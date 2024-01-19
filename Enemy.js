@@ -34,6 +34,12 @@ class Enemy{
             this.waypointIndex++;
         }
     }
+
+    collision(_bx, _by){
+        if(dist(this.pos.x, this.pos.y, _bx, _by) <= 12.5){
+            
+        }
+    }
 }
 
 function spawnEnemy(){
