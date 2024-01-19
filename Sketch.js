@@ -4,14 +4,18 @@ let enemies = [];
 function setup() {
 	createCanvas(windowWidth, windowHeight);
 	background(0);
-  rectMode(CENTER);
+  console.log(windowWidth, windowHeight);
 	
   waypoints.push(createVector(-width/2, 0));
   waypoints.push(createVector(-width/4, 0));
   waypoints.push(createVector(-width/4, height/4));
   waypoints.push(createVector(0, height/4));
   waypoints.push(createVector(0, -height/3));
-
+  waypoints.push(createVector(width/5, -height/3));
+  waypoints.push(createVector(width/5, height/3));
+  waypoints.push(createVector(width/3, height/3));
+  waypoints.push(createVector(width/3, -height/5));
+  waypoints.push(createVector(-width/2, -height/5));
 }
 
 function draw() {	
