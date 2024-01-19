@@ -14,7 +14,7 @@ class Enemy{
 
     display(){
         stroke(255);
-		strokeWeight(10);
+		strokeWeight(25);
         point(this.pos);
     }
 
@@ -30,13 +30,12 @@ class Enemy{
         this.pos.x += this.vel.x;
         this.pos.y += this.vel.y;
 
-        if(dist(this.center.x, this.center.y, waypoints[this.waypointIndex].x, waypoints[this.waypointIndex].y) <= 5){
+        if(dist(this.center.x, this.center.y, waypoints[this.waypointIndex].x, waypoints[this.waypointIndex].y) <= 10){
             this.waypointIndex++;
         }
     }
 }
 
 function spawnEnemy(){
-    enemies.push(new Enemy(-width/2, 0, 5));
-    console.log(enemies);
+    enemies.push(new Enemy(-width/2, 0, 15));
 }

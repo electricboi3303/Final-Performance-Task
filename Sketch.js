@@ -33,6 +33,12 @@ function draw() {
       let e = enemies[i];
       e.display();
       e.move();
+      console.log(dist(e.center.x, e.center.y, waypoints[waypoints.length-1].x, waypoints[waypoints.length-1].y));
+
+
+      if(dist(e.pos.x, e.pos.y, waypoints[waypoints.length-1].x, waypoints[waypoints.length-1].y) <= 15){
+        enemies.splice(i, 1);
+      }
   }
 }
 
