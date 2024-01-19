@@ -11,7 +11,6 @@ let targetTime = 100;
 function setup() {
 	createCanvas(windowWidth, windowHeight);
 	background(0);
-  console.log(windowWidth, windowHeight);
 	
   waypoints.push(createVector(-width/2, 0));
   waypoints.push(createVector(-width/4, 0));
@@ -50,20 +49,34 @@ function draw() {
       }
     for(let j = towers.length - 1; j > 0; j--){
         let t = towers[j];
-        t.display();
         t.shoot(e.pos.x, e.pos.y);
     
       }
   }
 
-
+  for(let i = towers.length - 1; i > 0; i--){ //ensures that towers are displayed constantly  
+    let t = towers[i];
+    t.display();
+  }
 
   for(let i = bullets.length - 1; i > 0; i--){
     let b = bullets[i];
     b.display();
     b.move();
+
+    for(let j = enemies.length - 1; j > 0; j--){
+      let e = enemies[j];
+
+      if(e.collision(b.pos.x, b.pos.y) == true){
+        enemies.splice(j, 1);
+        bullets.splice(i, 1);
+      }
+    }
   }
 }
+
+
+
 
 function mousePressed(){
   towers.push(new Tower(mouseX - width/2, mouseY - height/2, 0));
