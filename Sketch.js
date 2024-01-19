@@ -5,6 +5,7 @@ let bullets = [];
 
 let ranges = [500];
 let bulletspeeds = [10];
+let attackspeeds = [1];
 
 let targetTime = 100;
 
@@ -44,25 +45,33 @@ function draw() {
       e.display();
       e.move();
 
-      if(dist(e.pos.x, e.pos.y, waypoints[waypoints.length-1].x, waypoints[waypoints.length-1].y) <= 15){
+    if(dist(e.pos.x, e.pos.y, waypoints[waypoints.length-1].x, waypoints[waypoints.length-1].y) <= 15){
         enemies.splice(i, 1);
-      }
+    }
+
     for(let j = towers.length - 1; j > 0; j--){
         let t = towers[j];
+      if(t.update()==true){
         t.shoot(e.pos.x, e.pos.y);
-    
       }
+    }
   }
 
   for(let i = towers.length - 1; i > 0; i--){ //ensures that towers are displayed constantly  
     let t = towers[i];
     t.display();
+    t.update();
   }
 
   for(let i = bullets.length - 1; i > 0; i--){
     let b = bullets[i];
     b.display();
     b.move();
+    console.log(b.kill());
+
+    if(b.kill() == true){
+      bullets.splice(i, 1);
+    }
 
     for(let j = enemies.length - 1; j > 0; j--){
       let e = enemies[j];
