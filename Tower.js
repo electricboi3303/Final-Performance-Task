@@ -11,8 +11,8 @@ class Tower{
     }
 
     shoot(_ex, _ey){
-        if(dist(this.pos.x, this.pos.y, _ex, _ey) < type[this.type]){
-            bullets.push(new Bullet(this.pos.x, this.pos.y));
+        if(dist(this.pos.x, this.pos.y, _ex, _ey) < ranges[this.type]){
+            bullets.push(new Bullet(this.pos.x, this.pos.y, this.type, _ex, _ey));
         }
     }
 

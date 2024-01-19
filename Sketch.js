@@ -3,7 +3,8 @@ let enemies = [];
 let towers = [];
 let bullets = [];
 
-let type = [500];
+let ranges = [500];
+let bulletspeeds = [10];
 
 let targetTime = 100;
 
@@ -69,5 +70,5 @@ function mousePressed(){
 }
 
 function Timer(_targetTime){ //timer for enemies to spawn
-  return millis() >= _targetTime; //returns whether the target time has been reached or not
+  return millis() >= _targetTime; //returns whether zthe target time has been reached or not
 }
