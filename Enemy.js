@@ -3,9 +3,9 @@ class Enemy{
         this.pos = createVector(_x, _y);
         this.vel = createVector(0, 0);
         this.waypointIndex = 0;
-        this.width = 50;
-        this.height = 50;
-        this.center = createVector(this.pos.x + this.width/2, this.pos.y + this.height/2);
+        const width = 1;
+        const height = 1;
+        this.center = this.pos;
 
 
 
@@ -13,8 +13,9 @@ class Enemy{
     }
 
     display(){
-        fill(255);
-        rect(this.pos.x, this.pos.y, this.pos.x + this.width, this.pos.y + this.height);
+        stroke(255);
+				strokeWeight(10);
+        point(this.pos);
     }
 
     move(){
@@ -29,10 +30,13 @@ class Enemy{
         this.pos.x += this.vel.x;
         this.pos.y += this.vel.y;
 
+        if(dist(this.center.x, this.center.y, waypoints[this.waypointIndex].x, waypoints[this.waypointIndex].y) <= 2){
+            this.waypointIndex++;
+        }
     }
 }
 
 function spawnEnemy(){
-    enemies.push(new Enemy(-width/4, height/2 + 50));
+    enemies.push(new Enemy(-width/2, 0));
     console.log(enemies);
 }
