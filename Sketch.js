@@ -4,13 +4,13 @@ let towers = [];
 let bullets = [];
 
 let ranges = [500];
-let bulletspeeds = [10];
-let attackspeeds = [1];
+let bulletspeeds = [25];
+let attackspeeds = [100];
 
 let targetTime = 100;
 
 function setup() {
-	createCanvas(windowWidth, windowHeight);
+	createCanvas(1000, 800);
 	background(0);
 	
   waypoints.push(createVector(-width/2, 0));

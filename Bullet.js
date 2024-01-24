@@ -4,6 +4,7 @@ class Bullet{
         this.vel = createVector(0, 0);
         this.type = _type;
         this.epos = createVector(_ex, _ey);
+        this.tpos = createVector(_x, _y);
         this.frames = 0;
     }
 
@@ -21,15 +22,11 @@ class Bullet{
         this.vel.x = cos(angle) * bulletspeeds[this.type];
         this.vel.y = sin(angle) * bulletspeeds[this.type];
 
-        this.pos.add(this.vel);
+        this.pos.x += this.vel.x;
+        this.pos.y += this.vel.y;
     }
 
     kill(){
-        return dist(this.pos.x, this.pos.y, this.epos.x, this.epos.y) <= 5;
-    }
-
-    update(){
-        return this.frames%1000 == 0
-        this.frames++
+        return dist(this.pos.x, this.pos.y, this.tpos.x, this.tpos.y) > ranges[this.type];
     }
 }

@@ -41,5 +41,5 @@ class Enemy{
 }
 
 function spawnEnemy(){
-    enemies.push(new Enemy(-width/2, 0, 15));
+    enemies.push(new Enemy(-width/2, 0, 5));
 }
