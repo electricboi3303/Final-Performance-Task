@@ -2,12 +2,13 @@ let waypoints = [];
 let enemies = [];
 let towers = [];
 let bullets = [];
+let inrange = [];
 
 let ranges = [500];
 let bulletspeeds = [25];
-let attackspeeds = [100];
+let attackspeeds = [1000];
 
-let targetTime = 100;
+let targetTime = 0;
 
 function setup() {
 	createCanvas(1000, 800);
@@ -50,7 +51,12 @@ function draw() {
     }
 
     for(let j = towers.length - 1; j > 0; j--){
-        let t = towers[j];
+      let t = towers[j];
+      if(dist(e.pos.x, e.pos.y, t.pos.x, t.pos.y) < ranges[t.type]){
+        inrange.unshift(enemies[i]);
+      }
+      t.target = inrange[0];
+
       if(t.update()==true){
         t.shoot(e.pos.x, e.pos.y);
       }
@@ -67,7 +73,6 @@ function draw() {
     let b = bullets[i];
     b.display();
     b.move();
-    console.log(b.kill());
 
     if(b.kill() == true){
       bullets.splice(i, 1);

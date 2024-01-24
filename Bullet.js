@@ -1,9 +1,9 @@
 class Bullet{
-    constructor(_x, _y, _type, _ex, _ey){
+    constructor(_x, _y, _type, _enemy){
         this.pos = createVector(_x, _y);
         this.vel = createVector(0, 0);
         this.type = _type;
-        this.epos = createVector(_ex, _ey);
+        this.enemy = _enemy;
         this.tpos = createVector(_x, _y);
         this.frames = 0;
     }
@@ -15,8 +15,8 @@ class Bullet{
     }
 
     move(){
-        let xdist = this.epos.x - this.pos.x;
-        let ydist = this.epos.y - this.pos.y;
+        let xdist = this.enemy.pos.x - this.pos.x;
+        let ydist = this.enemy.pos.y - this.pos.y;
         let angle = atan2(ydist, xdist);
 
         this.vel.x = cos(angle) * bulletspeeds[this.type];

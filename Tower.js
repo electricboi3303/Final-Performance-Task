@@ -3,6 +3,7 @@ class Tower{
         this.pos = createVector(_x, _y);
         this.type = _type;
         this.frames = 0;
+        this.target
     }
 
     display(){
@@ -12,9 +13,7 @@ class Tower{
     }
 
     shoot(_ex, _ey){
-        if(dist(this.pos.x, this.pos.y, _ex, _ey) < ranges[this.type]){
-            bullets.push(new Bullet(this.pos.x, this.pos.y, this.type, _ex, _ey));
-        }
+        bullets.push(new Bullet(this.pos.x, this.pos.y, this.type, this.target));
     }
 
     update(){
