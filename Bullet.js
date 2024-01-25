@@ -1,16 +1,17 @@
 class Bullet{
-    constructor(_x, _y, _type, _enemy){
+    constructor(_x, _y, _type, _enemy, _image){
         this.pos = createVector(_x, _y);
         this.vel = createVector(0, 0);
         this.type = _type;
         this.enemy = _enemy;
+        this.image = _image;
         this.tpos = createVector(_x, _y);
         this.frames = 0;
     }
 
     display(){
         noStroke();
-        image(bulletimage, this.pos.x, this.pos.y);
+        image(this.image, this.pos.x, this.pos.y);
     }
 
     move(){
