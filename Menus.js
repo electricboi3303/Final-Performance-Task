@@ -1,13 +1,13 @@
 function menus(){
     if(menu ==0){
-        background(bg);
+        background(bg); //standard background of space
     }
 
     else if(menu == 1){
-        resizeCanvas(1440, 810);
+        resizeCanvas(1440, 810); //changes canvas size to make screen smaller
         background(bg);
-        translate(width/2, height/2);
-        game();
+        translate(width/2, height/2); //translates origin to middle of screen
+        game(); //function for the game's main code
     }
 
     else if(menu == 2){
