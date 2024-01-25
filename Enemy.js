@@ -13,8 +13,8 @@ class Enemy{
     }
 
     display(){
-        stroke(255);
-		strokeWeight(25);
+        stroke(255, 0 , 0);
+	strokeWeight(25);
         point(this.pos);
     }
 
