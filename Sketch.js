@@ -1,6 +1,6 @@
 let waypoints = [];
 let enemies = [];
-let towers = [];
+let shooters = [];
 let bullets = [];
 let inrange = [];
 
@@ -50,8 +50,8 @@ function draw() {
         enemies.splice(i, 1);
     }
 
-    for(let j = towers.length - 1; j > 0; j--){
-      let t = towers[j];
+    for(let j = shooters.length - 1; j > 0; j--){
+      let t = shooters[j];
       if(dist(e.pos.x, e.pos.y, t.pos.x, t.pos.y) < ranges[t.type]){
         inrange.unshift(enemies[i]);
       }
@@ -63,8 +63,8 @@ function draw() {
     }
   }
 
-  for(let i = towers.length - 1; i > 0; i--){ //ensures that towers are displayed constantly  
-    let t = towers[i];
+  for(let i = shooters.length - 1; i > 0; i--){ //ensures that towers are displayed constantly  
+    let t = shooters[i];
     t.display();
     t.update();
   }
@@ -91,9 +91,8 @@ function draw() {
 
 
 
-
 function mousePressed(){
-  towers.push(new Tower(mouseX - width/2, mouseY - height/2, 0));
+  shooters.push(new Shooter(mouseX - width/2, mouseY - height/2, 0));
 }
 
 function Timer(_targetTime){ //timer for enemies to spawn
