@@ -19,7 +19,7 @@ let menu = 0;
 let bulletimage;
 let shooterimage;
 let bg;
-let spawningspeed;
+let spawningspeed; 
 let b1;
 
 
@@ -48,7 +48,7 @@ function setup() {
 }
 
 function draw() {	
-  menus();
+  menus(); //function to show different menus
 }
 function game(){
   noStroke();
@@ -58,13 +58,13 @@ function game(){
   text('Lives: ' + lives, 10 - width/2, 50 - height/2);
   text('Money: ' + money, 10 - width/2, 75 - height/2);
 
-  levels();
+  levels();//function to determine which round/level you're on
 
   if(lives < 1){
     menu = 3
   }
 
-  if(Timer(targetTime) == true){ //always spawns first enemy
+  if(Timer(targetTime) == true){ //spawns enemy, spawn rates change by round
 		spawnEnemy();
 		targetTime = millis() + spawningspeed; 
   }
@@ -81,16 +81,16 @@ function game(){
       e.move();
 
     if(dist(e.pos.x, e.pos.y, waypoints[waypoints.length-1].x, waypoints[waypoints.length-1].y) <= 15){
-        enemies.splice(i, 1);
+        enemies.splice(i, 1); //removes enemies when they get to the end of the path and removes a life
         lives--;
     }
 
     for(let j = shooters.length - 1; j > 0; j--){
       let t = shooters[j];
       if(dist(e.pos.x, e.pos.y, t.pos.x, t.pos.y) < ranges[t.type]){
-        inrange.unshift(enemies[i]);
+        inrange.unshift(enemies[i]); //adds in range enemies to end of array
       }
-      t.target = inrange[0];
+      t.target = inrange[0]; //tower shoots at first in range enemy
       t.update();
     }
   }
@@ -107,7 +107,7 @@ function game(){
     b.move();
     
 
-    if(b.update() == true){
+    if(b.update() == true){ //splices bullets if they're on the screen for too long
       bullets.splice(i, 1);
     }
 
@@ -117,14 +117,14 @@ function game(){
       if(e.collision(b.pos.x, b.pos.y) == true){
         enemies.splice(j, 1);
         bullets.splice(i, 1);
-        money += 5;
+        money += 5; //gives money when enemies are killed
       }
     }
   }
 }
 
 function levels(){
-  if(enemiesspawned < 25){
+  if(enemiesspawned < 25){ //determines round based on how many enemies were spawned
     round = 1;
     spawningspeed = 500;
   }
@@ -137,7 +137,7 @@ function levels(){
     spawningspeed = 100;
   }
 
-  if(enemiesspawned > 250 && lives > 0){
+  if(enemiesspawned > 250 && lives > 0){ //shows win screen when game is beaten
     menu = 2;
   }
 }
@@ -157,18 +157,18 @@ function mousePressed(){
     }
 
     if(money < 50){
-      return;
+      return; //exits from function and doesn't place tower if shooter is too expensive
     }
 
     shooters.push(new Shooter(proposedPosition.x, proposedPosition.y, 0, shooterimage));
-    money -= 50; 
+    money -= 50; //removes $50 for every shooter placed
   
 }
 
 function isPositionOnPath(position) {
-  let bufferDistance = 50; // Distance within which you can't place a tower
+  let bufferDistance = 50; // Distance where towers can't be placed
   for (let i = 0; i < waypoints.length - 1; i++) {
-      if (mposToLineDistance(position, waypoints[i], waypoints[i + 1]) < bufferDistance) {
+      if (mposToLineDistance(position, waypoints[i], waypoints[i + 1]) < bufferDistance) { //if the mouse is too close to the path, return true
           return true;
       }
   }
