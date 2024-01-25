@@ -6,13 +6,18 @@ let inrange = [];
 
 let ranges = [500];
 let bulletspeeds = [25];
-let attackspeeds = [1000];
+let attackspeeds = [100];
 
 let targetTime = 0;
 
+let bulletimage;
+let bg;
+
 function setup() {
-	createCanvas(1000, 800);
+	createCanvas(1440, 810);
 	background(0);
+  bulletimage = loadImage('bullet.png');
+  bg = loadImage('background.jpg');
 	
   waypoints.push(createVector(-width/2, 0));
   waypoints.push(createVector(-width/4, 0));
@@ -27,12 +32,12 @@ function setup() {
 }
 
 function draw() {	
-	background(0);
+	background(bg);
 	translate(width/2, height/2);
 
   if(Timer(targetTime) == true){ //always spawns first enemy
 		spawnEnemy();
-		targetTime = millis() + 100; 
+		targetTime = millis() + 1000; 
   }
 
 	for(let i = 0; i < waypoints.length - 1; i++){ //for loop to show lines from waypoints
@@ -56,10 +61,7 @@ function draw() {
         inrange.unshift(enemies[i]);
       }
       t.target = inrange[0];
-
-      if(t.update()==true){
-        t.shoot(e.pos.x, e.pos.y);
-      }
+      t.update();
     }
   }
 
@@ -73,8 +75,9 @@ function draw() {
     let b = bullets[i];
     b.display();
     b.move();
+    
 
-    if(b.kill() == true){
+    if(b.update() == true){
       bullets.splice(i, 1);
     }
 

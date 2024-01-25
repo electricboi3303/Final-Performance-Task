@@ -9,9 +9,8 @@ class Bullet{
     }
 
     display(){
-        strokeWeight(5);
-        stroke(255, 0, 0);
-        point(this.pos);
+        noStroke();
+        image(bulletimage, this.pos.x, this.pos.y);
     }
 
     move(){
@@ -26,7 +25,8 @@ class Bullet{
         this.pos.y += this.vel.y;
     }
 
-    kill(){
-        return dist(this.pos.x, this.pos.y, this.tpos.x, this.tpos.y) > ranges[this.type];
+    update(){
+        this.frames++;
+        return this.frames % 25 == 0
     }
 }
